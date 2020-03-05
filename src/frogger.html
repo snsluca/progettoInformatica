@@ -3,42 +3,44 @@
 
 <head>
 	<meta charset="utf-8">
-    <title>Space invaders</title>
+    <title>Frogger</title>
 	<link rel="stylesheet" type="text/css" href="stile.css">
 </head>
 
 <body>
-	<h1>SPACE INVADERS</h1>
+	<h1>FROGGER</h1>
 	<div style="text-align:center">
         <canvas id="canv" width="500" height="550"></canvas>
     </div>
+	<!--
 	<div style="text-align:center">
 		<canvas id="canvPunti" width="500" height="100"></canvas>
     </div>
+	-->
 	<script src="gestioneTasti.js"></script>
 	<script src="giocatore.js"></script>
-	<script src="proiettile.js"></script>
-	<script src="alieno.js"></script>
-	<script src="filaAlieni.js"></script>
-	<script src="filaMuro.js"></script>
-	<script src="mattone.js"></script>
-	<script src="muro.js"></script>
-	<script src="punteggio.js"></script>
+	<script src="terreno.js"></script>
 	
     <script>
         var canvas = document.getElementById("canv");
         var ctx = canvas.getContext("2d");
         var dimXcanv = canvas.width;
         var dimYcanv = canvas.height;
-        var distanzaBordoDx;
         var stop = false;
 		function disegnaSchermo() {
 			ctx.beginPath();
 			ctx.clearRect(0, 0, dimXcanv, dimYcanv);
 			ctx.closePath();
+			terra.disegnaTerreno();
+			acqua.disegnaTerreno();
+			rana.disegnaGiocatore();
         }
 		
+        let rana = new Giocatore(25, 25);
+        let terra = new Terreno(dimXcanv, 400, 0, 200, 0);
+        let acqua = new Terreno(dimXcanv, 200, 0, 0, 1);
 		//Richiamo disegnaSchermo ad ogni frame
+		//setInterval(disegnaSchermo, 20);
 		setInterval(disegnaSchermo, 20);
     </script>
 </body>

@@ -1,0 +1,8 @@
+TODO:
+Iannox:
+- Aggiungere classe OSTACOLI con gestione in base al tipo di terreno in cui si trova il giocatore
+- Gestione delle collisioni con gli ostacoli (per ora limitarsi ad un log nella console con console.log("Colpito"))
+- Pensare a un sistema di punteggio
+Sans:
+- Scorrimento della mappa + terreni
+- "Aquila" e game over
