@@ -1,22 +1,22 @@
 class Terreno {
-    constructor(dimX, dimY, x, y, tipo) {
+    constructor(dimX, dimY, y, tipo) {
         this.dimX = dimX;
         this.dimY = dimY;
 
-        this.x = x;
+        this.x = 0;
         this.y = y;
-		
+        
 		/*
 		0=terra
 		1=acqua
 		*/
 		this.tipo=tipo;
 		
-        this.velocita = 0;
+        this.velocita = 1;
 
         this.disegnaTerreno = function() {
             ctx.beginPath();
-            ctx.rect(this.x, this.y, this.dimX, this.dimY);
+            ctx.rect(this.x, this.y-this.dimY, this.dimX, this.dimY);
             var colore;
 			switch(tipo)
 			{

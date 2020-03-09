@@ -4,10 +4,11 @@ class Giocatore {
         this.dimY = dimY;
 
         this.x = dimYcanv / 2-dimX;
-        this.y = dimYcanv - dimY;
+        this.y = dimYcanv - dimY*3;
         this.velocita = this.dimX;
 		this.premuto=false;
 		this.statoprec=false;
+		this.velocitaSpostamento=-1;
 		
         this.disegnaGiocatore = function() {
             ctx.beginPath();
@@ -16,8 +17,6 @@ class Giocatore {
             ctx.fill();
             ctx.closePath();
 			
-			
-			console.log((this.statoprec!=this.premuto));
 			if(vaiDx==true||vaiSx==true||vaiGiu==true||vaiSu==true)
 				this.premuto=true;
 			else
@@ -35,6 +34,7 @@ class Giocatore {
 					this.y -= this.velocita;
 			}
 			this.statoprec=this.premuto
+			this.y-=this.velocitaSpostamento;
         }
     }
 };
