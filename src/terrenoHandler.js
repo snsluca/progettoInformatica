@@ -12,22 +12,19 @@ class terrenoHandler{
 		
 		var ultimoTerreno=this.terreno.length-1;
 		
-		
-		
-		this.getTerreno = function(posizioneY)
+		this.getTipoTerreno = function(posizioneY)
 		{
 			var ris=0;
-			for(var i=0; i<this.terreno.length; i++)
-			{	
-				//console.log(this.terreno[i].y+"/"+posizioneY+"/"+(this.terreno[i].y-this.terreno[i].dimY))
-				if(posizioneY<=this.terreno[i].y&&posizioneY>=(this.terreno[i].y-this.terreno[i].dimY));
+			for(var k=0; k<this.terreno.length; k++)
+			{
+				if((posizioneY<this.terreno[k].y)&&(posizioneY>(this.terreno[k].y-this.terreno[k].dimY)))
 				{ 
-					//console.log(posizioneY<=this.terreno[i].y&&posizioneY>=(this.terreno[i].y-this.terreno[i].dimY));
-					//console.log("NUMERO:"+i);
-					ris=i;
+					console.log("NUMERO:"+k);
+					ris=k;
 				}
+					
 			}
-			return ris;
+			return this.terreno[ris].tipo;
 		}
 		
 		this.gestisciTerreno = function()

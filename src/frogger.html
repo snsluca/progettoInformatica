@@ -49,13 +49,13 @@
 		
 		for(i=0; i<distanzaVerticaleOstacoli; i++)
 		{
-				console.log(terrHandler.getTerreno(i*25));
-				var numeroTerreno=terrHandler.getTerreno(i*25);
-				console.log(numeroTerreno);
+				//console.log(terrHandler.getTerreno(i*25));
+				var tipoTerreno=terrHandler.getTipoTerreno(i*25);
 				var rigaOstacoli=[];
 				for(z=0; z<4; z++)
 				{
-					rigaOstacoli.push(new Ostacolo(100, 25, Math.random()*(3*dimXcanv), i*25, terrHandler.terreno[numeroTerreno], 25))
+					rigaOstacoli.push(new Ostacolo(100, 25, Math.random()*(3*dimXcanv), i*25, tipoTerreno, 25))
+					
 				}
 				ostacoli.push(rigaOstacoli);
 		}

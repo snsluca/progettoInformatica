@@ -6,7 +6,7 @@ class Ostacolo {
 		this.tipo=tipo;
         this.x = x;
         this.y = y;
-		this.velocitaX = -.5;
+		this.velocitaX = -Math.random()*(1-.5)-.5;
 		
 		
 		
