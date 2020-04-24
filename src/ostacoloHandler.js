@@ -12,9 +12,9 @@ class ostacoloHandler{
 			for(var z=0; z<this.numeroOstacoliPerRiga; z++)
 			{
 				if(tipoTerreno==0)
-					rigaOstacoli.push(new Ostacolo(modulo*4, modulo, Math.random()*4*dimXcanv, pos, tipoTerreno, modulo,velocita))
+					rigaOstacoli.push(new Ostacolo(modulo*3, modulo, Math.random()*4*dimXcanv, pos, tipoTerreno, modulo,velocita))
 				if(tipoTerreno==1)
-					rigaOstacoli.push(new Ostacolo(modulo*8, modulo, Math.random()*2*dimXcanv, pos, tipoTerreno, modulo,velocita))					
+					rigaOstacoli.push(new Ostacolo(modulo*5, modulo, Math.random()*1.5*dimXcanv, pos, tipoTerreno, modulo,velocita))					
 			}
 			return rigaOstacoli;
 		}
@@ -38,11 +38,8 @@ class ostacoloHandler{
 					}
 				}
 			}
-			//if(this.ostacoli[0][0].y-this.ostacoli[0][0].dimY>dimYcanv)
-			console.log(this.ostacoli[this.ostacoli.length-1][0].y);
 			if(this.ostacoli[this.ostacoli.length-1][0].y>dimYcanv)
 			{
-				console.log("genera");
 				this.ostacoli.pop();
 				this.ostacoli.unshift(this.generaRigaOstacoli(this.ostacoli[0][0].y-modulo));
 			}
