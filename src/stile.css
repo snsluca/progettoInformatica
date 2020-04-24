@@ -14,3 +14,11 @@ canvas {
 body {
 	background-color:black;
 }
+
+table{
+	margin:auto;
+}
+
+#tabellaPunti{
+	font-size:20pt;
+}

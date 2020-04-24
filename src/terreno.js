@@ -1,8 +1,7 @@
 class Terreno {
-    constructor(dimX, dimY, y, tipo) {
-        this.dimX = dimX;
+    constructor(dimY, y, tipo) {
         this.dimY = dimY;
-
+		this.tipo = tipo;
         this.x = 0;
         this.y = y;
         
@@ -11,14 +10,12 @@ class Terreno {
 		1=acqua
 		*/
 		this.tipo=tipo;
-		
-        this.velocita = 1;
 
         this.disegnaTerreno = function() {
             ctx.beginPath();
-            ctx.rect(this.x, this.y-this.dimY, this.dimX, this.dimY);
+            ctx.rect(this.x, this.y-this.dimY, dimXcanv, this.dimY);
             var colore;
-			switch(tipo)
+			switch(this.tipo)
 			{
 				case 0: colore="green"; break;
 				case 1: colore="blue"; break;
@@ -28,7 +25,7 @@ class Terreno {
             ctx.closePath();
 			
 			//Faccio avanzare il terreno
-			this.y+=this.velocita;
+			this.y+=velocitaScrolling;
         }
     }
 };

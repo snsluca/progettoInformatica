@@ -10,61 +10,78 @@
 <body>
 	<h1>FROGGER</h1>
 	<div style="text-align:center">
-        <canvas id="canv" width="500" height="500"></canvas>
+        <canvas id="canv" width="700" height="500"></canvas>
     </div>
-	<!--
 	<div style="text-align:center">
-		<canvas id="canvPunti" width="500" height="100"></canvas>
+		<table id="tabellaPunti">
+			<tr>
+				<td>Punteggio:</td>
+				<td><span id="contPunteggio">0</span></td>
+			</tr>
+		</table>
     </div>
-	-->
+	
 	<script src="gestioneTasti.js"></script>
 	<script src="giocatore.js"></script>
 	<script src="terreno.js"></script>
+	<script src="terrenoHandler.js"></script>
+	<script src="ostacolo.js"></script>
 	
     <script>
         var canvas = document.getElementById("canv");
+        var contPunteggio = document.getElementById("contPunteggio");
+        //var contPunteggioMax = document.getElementById("contPunteggio");
         var ctx = canvas.getContext("2d");
+		
+		var punteggio=0;
+		var punteggioMax=0;
         var dimXcanv = canvas.width;
         var dimYcanv = canvas.height;
+		var velocitaScrolling=.5;
         var stop = false;
-		var terreno=[
-			new Terreno(dimXcanv, 400, 500, 0),
-			new Terreno(dimXcanv, 200, 100, 1),
-			new Terreno(dimXcanv, 300, -100, 0),
-			new Terreno(dimXcanv, 100, -300, 1),
-		];
-		var ultimo=terreno.length-1;
 		
-		function gestisciTerreno()
-		{
-			for(var i=0; i<terreno.length; i++)
-			{
-				//if(terreno[i].y+terreno[i].dimY>0)
-				{
-					console.log(i);
-					terreno[i].disegnaTerreno();
-				}
-			}
+        let terrHandler = new terrenoHandler();
+		
+		var distanzaVerticaleOstacoli=dimYcanv/25;
+		var ostacoli=[
 			
-			if(terreno[0].y-terreno[0].dimY>dimYcanv)
-			{
-				terreno[0].y=terreno[ultimo].y-terreno[ultimo].dimY;
-				terreno.push(terreno.shift());
-			}
+		]
+		
+		for(i=0; i<distanzaVerticaleOstacoli; i++)
+		{
+				console.log(terrHandler.getTerreno(i*25));
+				var numeroTerreno=terrHandler.getTerreno(i*25);
+				console.log(numeroTerreno);
+				var rigaOstacoli=[];
+				for(z=0; z<4; z++)
+				{
+					rigaOstacoli.push(new Ostacolo(100, 25, Math.random()*(3*dimXcanv), i*25, terrHandler.terreno[numeroTerreno], 25))
+				}
+				ostacoli.push(rigaOstacoli);
 		}
 		
 		function disegnaSchermo() {
 			ctx.beginPath();
 			ctx.clearRect(0, 0, dimXcanv, dimYcanv);
 			ctx.closePath();
-			gestisciTerreno();
+			terrHandler.gestisciTerreno();
+			
+			for(y=0; y<ostacoli.length; y++)
+			{
+				for(x=0; x<2; x++)
+				{
+					ostacoli[y][x].disegnaOstacolo(rana.x, rana.y);
+				}
+			}
+			
+			//ostacolo.disegnaOstacolo(rana.x, rana.y);
 			rana.disegnaGiocatore();
+			contPunteggio.innerHTML = punteggio;
         }
 		
-        let rana = new Giocatore(25, 25);
+        let rana = new Giocatore(25);
 		
 		//Richiamo disegnaSchermo ad ogni frame
-		//setInterval(disegnaSchermo, 20);
 		setInterval(disegnaSchermo, 20);
     </script>
 </body>

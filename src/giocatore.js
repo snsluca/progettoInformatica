@@ -1,18 +1,16 @@
 class Giocatore {
-    constructor(dimX, dimY) {
+    constructor(dimX) {
         this.dimX = dimX;
-        this.dimY = dimY;
 
-        this.x = dimYcanv / 2-dimX;
-        this.y = dimYcanv - dimY*3;
+        this.x = dimXcanv / 2 - dimX;
+        this.y = dimYcanv - dimX*3;
         this.velocita = this.dimX;
 		this.premuto=false;
 		this.statoprec=false;
-		this.velocitaSpostamento=-1;
 		
         this.disegnaGiocatore = function() {
             ctx.beginPath();
-            ctx.rect(this.x, this.y, this.dimX, this.dimY);
+            ctx.rect(this.x, this.y, this.dimX, this.dimX);
             ctx.fillStyle = "white";
             ctx.fill();
             ctx.closePath();
@@ -28,13 +26,17 @@ class Giocatore {
 					this.x += this.velocita;
 				if (vaiSx && this.x >= this.dimX)
 					this.x -= this.velocita;
-				if (vaiGiu && this.y <= dimYcanv - this.dimY*2)
+				if (vaiGiu && this.y <= dimYcanv - this.dimX*2)
 					this.y += this.velocita;
-				if (vaiSu && this.y >= this.dimY)
+				if (vaiSu && this.y >= this.dimX)
+				{
 					this.y -= this.velocita;
+					punteggio++;
+				}
+					
 			}
 			this.statoprec=this.premuto
-			this.y-=this.velocitaSpostamento;
+			this.y+=velocitaScrolling;
         }
     }
 };
