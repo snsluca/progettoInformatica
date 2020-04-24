@@ -6,9 +6,8 @@ class Ostacolo {
 		this.tipo=tipo;
         this.x = x;
         this.y = y;
-		this.velocitaX = -Math.random()*(1-.5)-.5;
-		
-		
+		this.velocitaX = -Math.random()*(1.5-.5)-.5;
+		//this.velocitaX = -5;
 		
         this.disegnaOstacolo = function(giocatoreX, giocatoreY) 
 		{
@@ -23,15 +22,25 @@ class Ostacolo {
 			
 			switch(tipo)
 			{
-				case 1: if((giocatoreX>=this.x)&&(giocatoreX<=this.x+this.dimX-dgX))
+				//case 0: alert("GAME OVER"); break;
+				case 0: 
+				if((giocatoreX>=this.x)&&(giocatoreX<=this.x+this.dimX-dgX))
 						{
 							if((giocatoreY>=this.y)&&(giocatoreY<=this.y+this.dimY))
 							{
 								//alert("GAME OVER");
-								console.log("colpito");
+								//console.log("colpito");
 							}					
 						} break;
-				//case 0: alert("GAME OVER"); break;
+				case 1: 
+				if(!((giocatoreX>=this.x)&&(giocatoreX<=this.x+this.dimX-dgX)))
+				{
+					if(!((giocatoreY>=this.y)&&(giocatoreY<=this.y+this.dimY)))
+					{
+							//alert("GAME OVER");
+							//console.log("affondato");
+						}					
+				} break;
 			}	
 			
 			this.x+=this.velocitaX;

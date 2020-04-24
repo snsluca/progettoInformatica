@@ -10,7 +10,6 @@ class terrenoHandler{
 			new Terreno(100, -300, 1),
 		];
 		
-		var ultimoTerreno=this.terreno.length-1;
 		
 		this.getTipoTerreno = function(posizioneY)
 		{
@@ -19,7 +18,6 @@ class terrenoHandler{
 			{
 				if((posizioneY<this.terreno[k].y)&&(posizioneY>(this.terreno[k].y-this.terreno[k].dimY)))
 				{ 
-					console.log("NUMERO:"+k);
 					ris=k;
 				}
 					
@@ -27,6 +25,7 @@ class terrenoHandler{
 			return this.terreno[ris].tipo;
 		}
 		
+		var ultimoTerreno=this.terreno.length-1;
 		this.gestisciTerreno = function()
 		{
 			for(var i=0; i<this.terreno.length; i++)

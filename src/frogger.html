@@ -25,6 +25,7 @@
 	<script src="giocatore.js"></script>
 	<script src="terreno.js"></script>
 	<script src="terrenoHandler.js"></script>
+	<script src="ostacoloHandler.js"></script>
 	<script src="ostacolo.js"></script>
 	
     <script>
@@ -37,44 +38,19 @@
 		var punteggioMax=0;
         var dimXcanv = canvas.width;
         var dimYcanv = canvas.height;
-		var velocitaScrolling=.5;
+		var velocitaScrolling=.2;
         var stop = false;
 		
         let terrHandler = new terrenoHandler();
-		
-		var distanzaVerticaleOstacoli=dimYcanv/25;
-		var ostacoli=[
-			
-		]
-		
-		for(i=0; i<distanzaVerticaleOstacoli; i++)
-		{
-				//console.log(terrHandler.getTerreno(i*25));
-				var tipoTerreno=terrHandler.getTipoTerreno(i*25);
-				var rigaOstacoli=[];
-				for(z=0; z<4; z++)
-				{
-					rigaOstacoli.push(new Ostacolo(100, 25, Math.random()*(3*dimXcanv), i*25, tipoTerreno, 25))
-					
-				}
-				ostacoli.push(rigaOstacoli);
-		}
+        let ostacHandler = new ostacoloHandler();
 		
 		function disegnaSchermo() {
 			ctx.beginPath();
 			ctx.clearRect(0, 0, dimXcanv, dimYcanv);
 			ctx.closePath();
 			terrHandler.gestisciTerreno();
+			ostacHandler.gestisciOstacolo();
 			
-			for(y=0; y<ostacoli.length; y++)
-			{
-				for(x=0; x<2; x++)
-				{
-					ostacoli[y][x].disegnaOstacolo(rana.x, rana.y);
-				}
-			}
-			
-			//ostacolo.disegnaOstacolo(rana.x, rana.y);
 			rana.disegnaGiocatore();
 			contPunteggio.innerHTML = punteggio;
         }
