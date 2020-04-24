@@ -38,8 +38,9 @@
 		var punteggioMax=0;
         var dimXcanv = canvas.width;
         var dimYcanv = canvas.height;
-		var velocitaScrolling=.2;
+		var velocitaScrolling=2;
         var stop = false;
+		var modulo=25;
 		
         let terrHandler = new terrenoHandler();
         let ostacHandler = new ostacoloHandler();
@@ -55,7 +56,7 @@
 			contPunteggio.innerHTML = punteggio;
         }
 		
-        let rana = new Giocatore(25);
+        let rana = new Giocatore(modulo);
 		
 		//Richiamo disegnaSchermo ad ogni frame
 		setInterval(disegnaSchermo, 20);

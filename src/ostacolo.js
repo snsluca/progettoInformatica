@@ -1,13 +1,13 @@
 class Ostacolo {
-    constructor(dimX, dimY, x, y, tipo, dgX)
+    constructor(dimX, dimY, x, y, tipo, dgX, velocitaX)
 	{
         this.dimX = dimX;
         this.dimY = dimY;
 		this.tipo=tipo;
         this.x = x;
         this.y = y;
-		this.velocitaX = -Math.random()*(1.5-.5)-.5;
-		//this.velocitaX = -5;
+		//this.velocitaX = -Math.random()*(1.5-.5)-.5;
+		this.velocitaX = velocitaX;
 		
         this.disegnaOstacolo = function(giocatoreX, giocatoreY) 
 		{
@@ -28,6 +28,7 @@ class Ostacolo {
 						{
 							if((giocatoreY>=this.y)&&(giocatoreY<=this.y+this.dimY))
 							{
+								
 								//alert("GAME OVER");
 								//console.log("colpito");
 							}					

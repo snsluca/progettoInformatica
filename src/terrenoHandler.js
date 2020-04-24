@@ -16,11 +16,10 @@ class terrenoHandler{
 			var ris=0;
 			for(var k=0; k<this.terreno.length; k++)
 			{
-				if((posizioneY<this.terreno[k].y)&&(posizioneY>(this.terreno[k].y-this.terreno[k].dimY)))
+				if((posizioneY<this.terreno[k].y)&&(posizioneY>=(this.terreno[k].y-this.terreno[k].dimY)))
 				{ 
 					ris=k;
 				}
-					
 			}
 			return this.terreno[ris].tipo;
 		}
