@@ -10,37 +10,54 @@
 <body>
 	<h1>FROGGER</h1>
 	<div style="text-align:center">
-        <canvas id="canv" width="500" height="550"></canvas>
+        <canvas id="canv" width="700" height="500"></canvas>
     </div>
-	<!--
 	<div style="text-align:center">
-		<canvas id="canvPunti" width="500" height="100"></canvas>
+		<table id="tabellaPunti">
+			<tr>
+				<td>Punteggio:</td>
+				<td><span id="contPunteggio">0</span></td>
+			</tr>
+		</table>
     </div>
-	-->
+	
 	<script src="gestioneTasti.js"></script>
 	<script src="giocatore.js"></script>
 	<script src="terreno.js"></script>
+	<script src="terrenoHandler.js"></script>
+	<script src="ostacoloHandler.js"></script>
+	<script src="ostacolo.js"></script>
 	
     <script>
         var canvas = document.getElementById("canv");
+        var contPunteggio = document.getElementById("contPunteggio");
         var ctx = canvas.getContext("2d");
+		
+		var punteggio=0;
+		var punteggioMax=0;
         var dimXcanv = canvas.width;
         var dimYcanv = canvas.height;
+		var velocitaScrolling=.7;
         var stop = false;
+		var modulo=25;
+		
+        let terrHandler = new terrenoHandler();
+        let ostacHandler = new ostacoloHandler();
+		
 		function disegnaSchermo() {
 			ctx.beginPath();
 			ctx.clearRect(0, 0, dimXcanv, dimYcanv);
 			ctx.closePath();
-			terra.disegnaTerreno();
-			acqua.disegnaTerreno();
+			terrHandler.gestisciTerreno();
+			ostacHandler.gestisciOstacolo();
+			
 			rana.disegnaGiocatore();
+			contPunteggio.innerHTML = punteggio;
         }
 		
-        let rana = new Giocatore(25, 25);
-        let terra = new Terreno(dimXcanv, 400, 0, 200, 0);
-        let acqua = new Terreno(dimXcanv, 200, 0, 0, 1);
+        let rana = new Giocatore(modulo);
+		
 		//Richiamo disegnaSchermo ad ogni frame
-		//setInterval(disegnaSchermo, 20);
 		setInterval(disegnaSchermo, 20);
     </script>
 </body>

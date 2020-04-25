@@ -21,19 +21,19 @@ function keyDownHandler(e) {
 		case "w":
 			vaiSu = true;
 			break;
-		/*
+		
 		case "ArrowRight":
-			vaiDx = true;
-			break;
-		case "Right":
 			vaiDx = true;
 			break;
 		case "ArrowLeft":
 			vaiSx = true;
 			break;
-		case "Left":
-			vaiSx = true;
-			break;*/
+		case "ArrowUp":
+			vaiSu = true;
+			break;
+		case "ArrowDown":
+			vaiGiu = true;
+			break;
 	}
 }
 
@@ -51,18 +51,19 @@ function keyUpHandler(e) {
         case "w":
             vaiSu = false;
             break;
-		/*
-        case "ArrowRight":
-            vaiDx = false;
-            break;
-        case "Right":
-            vaiDx = false;
-            break;
-        case "ArrowLeft":
-            vaiSx = false;
-            break;
-        case "Left":
-            vaiSx = false;
-            break;*/
-    }
+	
+	
+		case "ArrowRight":
+			vaiDx = false;
+			break;
+		case "ArrowLeft":
+			vaiSx = false;
+			break;
+		case "ArrowUp":
+			vaiSu = false;
+			break;
+		case "ArrowDown":
+			vaiGiu = false;
+			break;
+	}
 }
