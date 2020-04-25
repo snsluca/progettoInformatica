@@ -1,19 +1,19 @@
 class Terreno {
     constructor(dimY, y, tipo) {
+        //La dimensione del terreno generato, insieme al tipo, viene gestita da terrenoHandler.
         this.dimY = dimY;
+        /*
+		0=Terra
+		1=Acqua
+		*/
 		this.tipo = tipo;
-        this.x = 0;
         this.y = y;
         
-		/*
-		0=terra
-		1=acqua
-		*/
-		this.tipo=tipo;
-
         this.disegnaTerreno = function() {
+            //Disegno il terreno.
             ctx.beginPath();
-            ctx.rect(this.x, this.y-this.dimY, dimXcanv, this.dimY);
+            ctx.rect(0, this.y-this.dimY, dimXcanv, this.dimY);
+            //Il colore dipende dal tipo di terreno: verde per la terra, blu per l'acqua.
             var colore;
 			switch(this.tipo)
 			{
