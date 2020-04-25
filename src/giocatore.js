@@ -47,7 +47,7 @@ class Giocatore {
 				}
 			}
 			
-			this.tipoTerreno=terrHandler.getTipoTerreno(this.y);
+			//this.tipoTerreno=terrHandler.getTipoTerreno(this.y);
 			
 			this.statoprec=this.premuto
             //Sposto il giocatore insieme allo schermo.
