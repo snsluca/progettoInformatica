@@ -1,9 +1,8 @@
 class terrenoHandler{
 	constructor()
 	{
-		//Gestisco i terreni: quando uno di questi esce dallo schermo allora lo riporto in coda agli altri.
-		//Contengo l'ultimo terreno nel vettore per eseguirvi delle operazioni.
 		this.tipo=true;
+		//Funzione per gestire la tipologia del terreno, in modo tale che i terreni generati siano alternativamente acqua e terra.
 		this.invertiTipo=function()
 		{
 			this.tipo = this.tipo ? false : true;
@@ -13,6 +12,7 @@ class terrenoHandler{
 				return 0;
 		}
 		
+		//Genero una lunghezza casuale in base al tipo di terreno.
 		this.generaLunghezzaCasuale = function()
 		{
 			var fattore;
@@ -24,45 +24,40 @@ class terrenoHandler{
 			return (Math.floor(Math.random()*(fattore-2)+2))*modulo;
 		}
 		
+		//Mi assicuro che il primo terreno sia sempre erba e mai acqua.
 		this.terreno=[
-			//new Terreno(400, 500, 0),
-			//new Terreno(200, 100, 1),
-			//new Terreno(300, -100, 0),
-			//new Terreno(100, -300, 1),
 			new Terreno(this.generaLunghezzaCasuale(), 500, this.invertiTipo())
 		];
-		
+		//Genero altri 7 terreni per un totale di 8.
 		for(var i=0; i<7; i++)
-		{
 			this.terreno.push(new Terreno(this.generaLunghezzaCasuale(), this.terreno[i].y-this.terreno[i].dimY, this.invertiTipo()));
-		}
 		
+		
+		//Ottengo il tipo di terreno in cui si trova una certa posizioneY.
 		this.getTipoTerreno = function(posizioneY)
 		{
 			var ris=0;
+			//Scorro tutti i terreni in cerca di quello corretto.
 			for(var k=0; k<this.terreno.length; k++)
 			{
-				if((posizioneY<this.terreno[k].y)&&(posizioneY>=(this.terreno[k].y-this.terreno[k].dimY)))
+				if((posizioneY<=this.terreno[k].y)&&(posizioneY>=(this.terreno[k].y-this.terreno[k].dimY)))
 				{ 
 					ris=k;
+					break;	
 				}
 			}
 			return this.terreno[ris].tipo;
 		}
 		
-		//var ultimoTerreno=this.terreno.length-1;
 		this.gestisciTerreno = function()
 		{
+			//Disegno tutti i terreni.
 			for(var i=0; i<this.terreno.length; i++)
-			{
 				this.terreno[i].disegnaTerreno();
-			}
-			
+						
+			//Quando un terreno esce dallo schermo, lo cancello e ne genero un altro in cima.
 			if(this.terreno[0].y-this.terreno[0].dimY>dimYcanv)
 			{
-				//this.terreno[0].y=this.terreno[ultimoTerreno].y-this.terreno[ultimoTerreno].dimY;
-				//this.terreno.push(this.terreno.shift());
-				
 				this.terreno.shift();
 				this.terreno.push(new Terreno(this.generaLunghezzaCasuale(), this.terreno[this.terreno.length-1].y-this.terreno[this.terreno.length-1].dimY, this.invertiTipo()));
 			}
