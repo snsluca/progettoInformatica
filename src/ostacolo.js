@@ -9,9 +9,9 @@ class Ostacolo {
 		this.tipo=tipo;
 		//Valorizzo le dimensioni automaticamente.
         if(this.tipo==0)
-			this.dimX=modulo*3;
+			this.dimX=modulo*2;
 		else
-			this.dimX=modulo*7;
+			this.dimX=modulo*3;
         
         this.disegnaOstacolo = function(giocatoreX, giocatoreY) 
 		{
@@ -22,16 +22,11 @@ class Ostacolo {
 			if(this.tipo==0)
 				ctx.fillStyle = "grey";
 			else
-				ctx.fillStyle = "brown";
+				ctx.fillStyle = "blue";
             ctx.fill();
             ctx.closePath();
             
-			//Controllo le collisioni del giocatore:
-			switch(tipo)
-			{
-				//case 0: alert("GAME OVER"); break;
-				case 0: 
-				if((giocatoreX>=this.x)&&(giocatoreX<=this.x+this.dimX-dgX))
+			if((giocatoreX>=this.x)&&(giocatoreX<=(this.x+this.dimX-modulo)))
 						{
 							if((giocatoreY>=this.y)&&(giocatoreY<=this.y+modulo))
 							{
@@ -39,18 +34,33 @@ class Ostacolo {
 								//alert("GAME OVER");
 								//console.log("colpito");
 							}					
+						}
+			
+			//Controllo le collisioni del giocatore:
+			/*switch(tipo)
+			{
+				//case 0: alert("GAME OVER"); break;
+				case 0: 
+						if((giocatoreX>=this.x-modulo)&&(giocatoreX<=this.x+this.dimX-modulo))
+						{
+							if((giocatoreY>=this.y)&&(giocatoreY<=this.y+modulo))
+							{
+								
+								//alert("GAME OVER");
+								console.log("colpito");
+							}					
 						} break;
 				case 1: 
-				if(!((giocatoreX>=this.x)&&(giocatoreX<=this.x+this.dimX-dgX)))
-				{
-					if(!((giocatoreY>=this.y)&&(giocatoreY<=this.y+modulo)))
+					if(!((giocatoreX>=this.x)&&(giocatoreX<=this.x+this.dimX-dgX)))
 					{
-							//alert("GAME OVER");
-							//console.log("affondato");
-						}					
-				} break;
+						if(!((giocatoreY>=this.y)&&(giocatoreY<=this.y+modulo)))
+						{
+								//alert("GAME OVER");
+								//console.log("affondato");
+							}					
+					} break;
 			}	
-			
+			*/
             //Gestisco le nuove posizioni.
 			this.x+=this.velocitaX;
 			this.y+=velocitaScrolling;

@@ -14,7 +14,7 @@ class ostacoloHandler{
 		*/
 		this.ostacoli=[];
 		//Variabile per contenere il numero di ostacoli da generare per ogni riga.
-		this.numeroOstacoliPerRiga=3;
+		this.numeroOstacoliPerRiga=2;
 		
 		this.generaRigaOstacoli=function(pos)
 		{
@@ -25,14 +25,14 @@ class ostacoloHandler{
 			//Genero la velocità di ogni riga casualmente.
 			var velocita=-(Math.random()*(1.5-.5)+.5);
 			//Tiro un dado: ogni tanto una fila di ostacoli andrà nel verso opposto.
-			if(Math.floor(Math.random()*4)==0)
+			if(Math.floor(Math.random()*3)==0)
 				velocita*=-1;
 			//Genero gli ostacoli.
 			for(var z=0; z<this.numeroOstacoliPerRiga; z++)
 			{
 				//Se il terreno è terra, allora gli ostacoli sono molto spaziati tra loro e molto veloci.
 				if(tipoTerreno==0)
-					rigaOstacoli.push(new Ostacolo(Math.random()*4*dimXcanv, pos, tipoTerreno, modulo,velocita*2));
+					rigaOstacoli.push(new Ostacolo(Math.random()*3*dimXcanv, pos, tipoTerreno, modulo,velocita*2));
 				//Se il terreno è acqua, allora gli ostacoli sono molto ravvicinati e più lenti.
 				if(tipoTerreno==1)
 					rigaOstacoli.push(new Ostacolo(Math.random()*1*dimXcanv, pos, tipoTerreno, modulo,velocita));
@@ -51,8 +51,22 @@ class ostacoloHandler{
 			this.ostacoli.push(this.generaRigaOstacoli(i*modulo));
 		}
 		
+		this.getColpito = function(giocatoreX, giocatoreY)
+		{
+			
+			if((giocatoreX>=this.x)&&(giocatoreX<=(this.x+this.dimX-modulo)))
+			{
+				if((giocatoreY>=this.y)&&(giocatoreY<=this.y+modulo))
+				{
+								
+					//alert("GAME OVER");
+					console.log("colpito");
+				}					
+			}
+		}
+		
 		//Funzione per gestire correttamente la matrice di ostacoli.
-		this.gestisciOstacolo = function()
+		this.gestisciOstacolo = function(giocatoreX, giocatoreY)
 		{
 			for(var y=0; y<this.ostacoli.length; y++)
 			{
@@ -66,6 +80,17 @@ class ostacoloHandler{
 					//Se gli ostacoli che vanno verso dx spariscono, allora ricompaiono a sx.
 					if(this.ostacoli[y][x].x>dimXcanv)
 						this.ostacoli[y][x].x=-this.ostacoli[y][x].dimX;
+					//Controllo le collisioni con gli ostacoli.
+					var colpito=false;	
+					if(~~giocatoreY==~~this.ostacoli[y][x].y)
+					{
+						if((~~giocatoreX>=~~this.ostacoli[y][x].x-modulo)&&(~~giocatoreX<=~~(this.ostacoli[y][x].x+this.ostacoli[y][x].dimX)))
+						{
+							//console.log("colpito");
+							colpito=true;
+							stop=true;
+						}					
+					}		
 				}
 			}
 			//Se la fila di ostacoli sprofonda fuori dallo schermo, allora la cancello e ne genero un'altra in cima.
