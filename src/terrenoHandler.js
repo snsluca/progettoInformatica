@@ -32,7 +32,6 @@ class terrenoHandler{
 		for(var i=0; i<3; i++)
 			this.terreno.push(new Terreno(this.generaLunghezzaCasuale(), this.terreno[i].y-this.terreno[i].dimY, this.invertiTipo()));
 		
-		
 		//Ottengo il tipo di terreno in cui si trova una certa posizioneY.
 		this.getTipoTerreno = function(posizioneY)
 		{

@@ -20,6 +20,7 @@
 				<td>Punteggio:</td>
 				<td><span id="contPunteggio">0</span></td>
 			</tr>
+			<!-- <tr ><td><input type="button" id="pulsante" onclick="cambiaScala()" value="Cliccami per cambiare la scala del gioco."></input></td></tr> -->
 		</table>
     </div>
 	
@@ -31,6 +32,8 @@
 	<script src="ostacolo.js"></script>
 	
     <script>
+			
+	
         var canvas = document.getElementById("canv");
         var contPunteggio = document.getElementById("contPunteggio");
         var ctx = canvas.getContext("2d");
@@ -51,13 +54,22 @@
         var dimYcanv = canvas.height;
 		var velocitaScrolling=.7;
         var stop = false;
-		var modulo=50;
+		var modulo=25;
+		
+		function cambiaScala(){
+			if(modulo==25)
+				modulo=50;
+			else
+				modulo=25;
+			disegnaSchermo();
+		};
 		
         let terrHandler = new terrenoHandler();
         let ostacHandler = new ostacoloHandler();
 		
 		function disegnaSchermo() {
-			if(!stop)
+			//if(!stop)
+			if(true)
 			{
 				ctx.beginPath();
 				ctx.clearRect(0, 0, dimXcanv, dimYcanv);

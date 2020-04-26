@@ -14,7 +14,7 @@ class ostacoloHandler{
 		*/
 		this.ostacoli=[];
 		//Variabile per contenere il numero di ostacoli da generare per ogni riga.
-		this.numeroOstacoliPerRiga=2;
+		this.numeroOstacoliPerRiga=1;
 		
 		this.generaRigaOstacoli=function(pos)
 		{
@@ -32,10 +32,10 @@ class ostacoloHandler{
 			{
 				//Se il terreno è terra, allora gli ostacoli sono molto spaziati tra loro e molto veloci.
 				if(tipoTerreno==0)
-					rigaOstacoli.push(new Ostacolo(Math.random()*3*dimXcanv, pos, tipoTerreno, modulo,velocita*2));
+					rigaOstacoli.push(new Ostacolo(Math.random()*1*dimXcanv, pos, tipoTerreno, velocita*2));
 				//Se il terreno è acqua, allora gli ostacoli sono molto ravvicinati e più lenti.
 				if(tipoTerreno==1)
-					rigaOstacoli.push(new Ostacolo(Math.random()*1*dimXcanv, pos, tipoTerreno, modulo,velocita));
+					rigaOstacoli.push(new Ostacolo(Math.random()*1*dimXcanv, pos, tipoTerreno, velocita));
 			}
 			return rigaOstacoli;
 		}
@@ -76,10 +76,17 @@ class ostacoloHandler{
 					this.ostacoli[y][x].disegnaOstacolo(rana.x, rana.y);
 					//Se gli ostacoli che vanno verso sx spariscono, allora ricompaiono a dx.
 					if(this.ostacoli[y][x].x+this.ostacoli[y][x].dimX<0)
+					{
 						this.ostacoli[y][x].x=dimXcanv;
+						this.ostacoli[y][x].tracceFisse=true;
+					}
+						
 					//Se gli ostacoli che vanno verso dx spariscono, allora ricompaiono a sx.
 					if(this.ostacoli[y][x].x>dimXcanv)
+					{
 						this.ostacoli[y][x].x=-this.ostacoli[y][x].dimX;
+						this.ostacoli[y][x].tracceFisse=true;
+					}
 					//Controllo le collisioni con gli ostacoli.
 					var colpito=false;	
 					if(~~giocatoreY==~~this.ostacoli[y][x].y)
