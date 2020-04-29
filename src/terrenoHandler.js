@@ -28,10 +28,9 @@ class terrenoHandler{
 		this.terreno=[
 			new Terreno(this.generaLunghezzaCasuale(), 500, this.invertiTipo())
 		];
-		//Genero altri 7 terreni per un totale di 8.
-		for(var i=0; i<7; i++)
+		//Genero altri 3 terreni per un totale di 4.
+		for(var i=0; i<3; i++)
 			this.terreno.push(new Terreno(this.generaLunghezzaCasuale(), this.terreno[i].y-this.terreno[i].dimY, this.invertiTipo()));
-		
 		
 		//Ottengo il tipo di terreno in cui si trova una certa posizioneY.
 		this.getTipoTerreno = function(posizioneY)
@@ -40,7 +39,7 @@ class terrenoHandler{
 			//Scorro tutti i terreni in cerca di quello corretto.
 			for(var k=0; k<this.terreno.length; k++)
 			{
-				if((posizioneY<=this.terreno[k].y)&&(posizioneY>=(this.terreno[k].y-this.terreno[k].dimY)))
+				if((~~posizioneY<~~this.terreno[k].y)&&(~~posizioneY>=~~(this.terreno[k].y-this.terreno[k].dimY)))
 				{ 
 					ris=k;
 					break;	

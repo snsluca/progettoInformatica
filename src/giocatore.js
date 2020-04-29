@@ -10,6 +10,7 @@ class Giocatore {
         //Variabili per la gestione dei tasti.
 		this.premuto=false;
 		this.statoprec=false;
+		this.tipoTerreno;
 		
         this.disegnaGiocatore = function() {
             //Disegno il giocatore.
@@ -33,15 +34,21 @@ class Giocatore {
 				if (vaiSx && this.x >= this.dimX)
 					this.x -= this.velocita;
 				if (vaiGiu && this.y <= dimYcanv - this.dimX*2)
+				{
 					this.y += this.velocita;
+					punteggio--;
+				}
+					
 				if (vaiSu && this.y >= this.dimX)
 				{
 					this.y -= this.velocita;
                     //Ad ogni passo avanti, aggiungo un punto.
 					punteggio++;
 				}
-					
 			}
+			
+			//this.tipoTerreno=terrHandler.getTipoTerreno(this.y);
+			
 			this.statoprec=this.premuto
             //Sposto il giocatore insieme allo schermo.
 			this.y+=velocitaScrolling;

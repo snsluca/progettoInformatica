@@ -9,15 +9,18 @@
 
 <body>
 	<h1>FROGGER</h1>
-	<div style="text-align:center">
-        <canvas id="canv" width="700" height="500"></canvas>
-    </div>
+	<div id="myElement">
+		<div style="text-align:center">
+			<canvas id="canv" width="700" height="500"></canvas>
+		</div>
+	</div>
 	<div style="text-align:center">
 		<table id="tabellaPunti">
 			<tr>
 				<td>Punteggio:</td>
 				<td><span id="contPunteggio">0</span></td>
 			</tr>
+			<!-- <tr ><td><input type="button" id="pulsante" onclick="cambiaScala()" value="Cliccami per cambiare la scala del gioco."></input></td></tr> -->
 		</table>
     </div>
 	
@@ -29,35 +32,70 @@
 	<script src="ostacolo.js"></script>
 	
     <script>
+			
+	
         var canvas = document.getElementById("canv");
         var contPunteggio = document.getElementById("contPunteggio");
         var ctx = canvas.getContext("2d");
 		
+		var element = document.getElementById('myElement'); // grab a reference to your element
+		element.addEventListener('click', clickHandler);
+		var elementIsClicked = false; // declare the variable that tracks the state
+		function clickHandler(){ // declare a function that updates the state
+		  elementIsClicked = true;
+		}
+		function isElementClicked (){
+			if(elementIsClicked){
+				console.log("Ricomincia");
+			}
+		}
 		var punteggio=0;
-		var punteggioMax=0;
         var dimXcanv = canvas.width;
         var dimYcanv = canvas.height;
 		var velocitaScrolling=.7;
         var stop = false;
 		var modulo=50;
 		
+		function cambiaScala(){
+			if(modulo==25)
+				modulo=50;
+			else
+				modulo=25;
+			disegnaSchermo();
+		};
+		
         let terrHandler = new terrenoHandler();
         let ostacHandler = new ostacoloHandler();
 		
 		function disegnaSchermo() {
-			ctx.beginPath();
-			ctx.clearRect(0, 0, dimXcanv, dimYcanv);
-			ctx.closePath();
-			terrHandler.gestisciTerreno();
-			ostacHandler.gestisciOstacolo();
+			//if(!stop)
+			if(true)
+			{
+				ctx.beginPath();
+				ctx.clearRect(0, 0, dimXcanv, dimYcanv);
+				ctx.closePath();
+				terrHandler.gestisciTerreno();
+				ostacHandler.gestisciOstacolo(rana.x, rana.y);
+				
+				rana.disegnaGiocatore();
+				contPunteggio.innerHTML = punteggio;
+			}
+			else
+			{
+				ctx.font = "60pt Calibri";
+				ctx.textAlign = 'center';
+				ctx.fillStyle = 'red';
+				ctx.fillText("GAME OVER", dimXcanv/2, dimYcanv/2);
+				
+				//setInterval(isElementClicked, 100);
+			}
 			
-			rana.disegnaGiocatore();
-			contPunteggio.innerHTML = punteggio;
         }
 		
         let rana = new Giocatore(modulo);
 		
 		//Richiamo disegnaSchermo ad ogni frame
+		
 		setInterval(disegnaSchermo, 20);
     </script>
 </body>
