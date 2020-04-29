@@ -12,7 +12,7 @@ class Ostacolo {
         if(this.tipo==0)
 			this.dimX=modulo*2;
 		else
-			this.dimX=modulo*3;
+			this.dimX=modulo*13;
         
         this.disegnaOstacolo = function(giocatoreX, giocatoreY) 
 		{
@@ -67,6 +67,16 @@ class Ostacolo {
 					ctx.closePath();
 				
 			}
+            if(tipo==1)
+            {
+                ctx.closePath();
+				ctx.beginPath();
+				ctx.rect(0, this.y+1, this.x-1, modulo-2);
+				ctx.rect(this.x+this.dimX+2, this.y+1, dimXcanv, modulo-2);
+				ctx.fillStyle = "brown";
+				ctx.fill();
+				    ctx.closePath();
+            }
 			
             //Disegno l'ostacolo.
             ctx.beginPath();

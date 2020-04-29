@@ -22,7 +22,7 @@ class Terreno {
 			switch(this.tipo)
 			{
 				case 0: colore="green"; break;
-				case 1: colore="brown"; break;
+				case 1: colore="black"; break;
 			}
 			ctx.fillStyle = colore;
             ctx.fill();
