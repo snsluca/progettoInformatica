@@ -51,18 +51,26 @@ class ostacoloHandler{
 			this.ostacoli.push(this.generaRigaOstacoli(i*modulo));
 		}
 		
-		this.getColpito = function(giocatoreX, giocatoreY)
+		this.getVelocitaOstacolo = function(posizioneY)
 		{
-			
-			if((giocatoreX>=this.x)&&(giocatoreX<=(this.x+this.dimX-modulo)))
+			var risK=0;
+			var risZ=0;
+			//Scorro tutti i terreni in cerca di quello corretto.
+			for(var k=0; k<this.ostacoli.length; k++)
 			{
-				if((giocatoreY>=this.y)&&(giocatoreY<=this.y+modulo))
+				for(var z=0; z<this.numeroOstacoliPerRiga; z++)
 				{
-								
-					//alert("GAME OVER");
-					console.log("colpito");
-				}					
+				//console.log(~~posizioneY+"-"+~~this.ostacoli[k][z].y);
+					if(~~posizioneY==~~this.ostacoli[k][z].y)
+					{ 
+						risK=k;
+						risZ=z;
+						break;	
+					}
+				}
 			}
+			//console.log(ris);
+			return this.ostacoli[risK][risZ].velocitaX;
 		}
 		
 		//Funzione per gestire correttamente la matrice di ostacoli.
@@ -88,13 +96,13 @@ class ostacoloHandler{
 						this.ostacoli[y][x].tracceFisse=true;
 					}
 					//Controllo le collisioni con gli ostacoli.
-					var colpito=false;	
+					//var colpito=false;	
 					if(~~giocatoreY==~~this.ostacoli[y][x].y)
 					{
 						if((~~giocatoreX>=~~this.ostacoli[y][x].x-modulo)&&(~~giocatoreX<=~~(this.ostacoli[y][x].x+this.ostacoli[y][x].dimX)))
 						{
 							//console.log("colpito");
-							colpito=true;
+							//colpito=true;
 							stop=true;
 						}					
 					}		
