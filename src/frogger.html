@@ -38,10 +38,10 @@
         var contPunteggio = document.getElementById("contPunteggio");
         var ctx = canvas.getContext("2d");
 		
-		var element = document.getElementById('myElement'); // grab a reference to your element
+		var element = document.getElementById('myElement'); 
 		element.addEventListener('click', clickHandler);
-		var elementIsClicked = false; // declare the variable that tracks the state
-		function clickHandler(){ // declare a function that updates the state
+		var elementIsClicked = false; 
+		function clickHandler(){ 
 		  elementIsClicked = true;
 		}
 		function isElementClicked (){
@@ -68,8 +68,8 @@
         let ostacHandler = new ostacoloHandler();
 		
 		function disegnaSchermo() {
-			//if(!stop)
-			if(true)
+			if(!stop)
+			//if(true)
 			{
 				ctx.beginPath();
 				ctx.clearRect(0, 0, dimXcanv, dimYcanv);
@@ -82,10 +82,18 @@
 			}
 			else
 			{
+				ctx.beginPath();
+				ctx.rect(dimXcanv/6, dimYcanv/4, 2*dimXcanv/3, 4*dimYcanv/7);
+				ctx.fillStyle = "black";
+				ctx.fill();
+				ctx.closePath();
+				
 				ctx.font = "60pt Calibri";
 				ctx.textAlign = 'center';
 				ctx.fillStyle = 'red';
 				ctx.fillText("GAME OVER", dimXcanv/2, dimYcanv/2);
+				ctx.fillText("Punteggio: "+punteggio, dimXcanv/2, dimYcanv/2+70);
+				ctx.closePath();
 				
 				//setInterval(isElementClicked, 100);
 			}

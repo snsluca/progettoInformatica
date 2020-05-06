@@ -48,10 +48,14 @@ class Giocatore {
 			}
 			
 			//this.tipoTerreno=terrHandler.getTipoTerreno(this.y);
-			
 			this.statoprec=this.premuto
             //Sposto il giocatore insieme allo schermo.
 			this.y+=velocitaScrolling;
+			if(this.y>dimYcanv)
+				stop=true;
+			if(terrHandler.getTipoTerreno(this.y)==1)
+				this.x+=ostacHandler.getVelocitaOstacolo(this.y);
+			//console.log(this.x+"-"+this.y)
         }
     }
 };
