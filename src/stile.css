@@ -1,18 +1,18 @@
 *{
-    font - family: "Courier New";
+    font-family: "Courier New";
     color: white;
 }
 h1 {
-    text - align: center;
-    font - size: 30 pt;
+    text-align: center;
+    font-size: 30 pt;
 }
 canvas {
-    background - color: black;
+    background-color: black;
     border: solid white 1 px;
     padding: 2 px;
 }
 body {
-    background - color: black;
+    background-color: black;
 }
 
 table {
@@ -20,5 +20,5 @@ table {
 }
 
 #tabellaPunti {
-    font - size: 20 pt;
+    font-size: 20 pt;
 }
