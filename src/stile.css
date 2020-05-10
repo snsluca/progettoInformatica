@@ -1,24 +1,24 @@
-* {
-	font-family: "Courier New";
-	color:white;
+*{
+    font - family: "Courier New";
+    color: white;
 }
-h1{
-	text-align:center;
-	font-size:30pt;
+h1 {
+    text - align: center;
+    font - size: 30 pt;
 }
 canvas {
-	background-color:black;
-	border: solid white 1px;
-	padding:2px;
+    background - color: black;
+    border: solid white 1 px;
+    padding: 2 px;
 }
 body {
-	background-color:black;
+    background - color: black;
 }
 
-table{
-	margin:auto;
+table {
+    margin: auto;
 }
 
-#tabellaPunti{
-	font-size:20pt;
+#tabellaPunti {
+    font - size: 20 pt;
 }

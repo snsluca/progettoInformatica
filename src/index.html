@@ -8,7 +8,7 @@
 </head>
 
 <body>
-	<h1>FROGGER</h1>
+	<!--<h1>FROGGER</h1>-->
 	<div id="myElement">
 		<div style="text-align:center">
 			<canvas id="canv" width="700" height="500"></canvas>
@@ -16,9 +16,9 @@
 	</div>
 	<div style="text-align:center">
 		<table id="tabellaPunti">
-			<tr>
+			<tr><!--
 				<td>Punteggio:</td>
-				<td><span id="contPunteggio">0</span></td>
+				<td><span id="contPunteggio">0</span></td>-->
 			</tr>
 			<!-- <tr ><td><input type="button" id="pulsante" onclick="cambiaScala()" value="Cliccami per cambiare la scala del gioco."></input></td></tr> -->
 		</table>
@@ -32,43 +32,43 @@
 	<script src="ostacolo.js"></script>
 	
     <script>
-			
-	
-        var canvas = document.getElementById("canv");
-        var contPunteggio = document.getElementById("contPunteggio");
-        var ctx = canvas.getContext("2d");
-		
-		var element = document.getElementById('myElement'); 
+		var canvas = document.getElementById("canv");
+		var contPunteggio = document.getElementById("contPunteggio");
+		var ctx = canvas.getContext("2d");
+
+		var element = document.getElementById('myElement');
 		element.addEventListener('click', clickHandler);
-		var elementIsClicked = false; 
-		function clickHandler(){ 
-		  elementIsClicked = true;
+		var elementIsClicked = false;
+
+		function clickHandler() {
+			elementIsClicked = true;
 		}
-		function isElementClicked (){
-			if(elementIsClicked){
+
+		function isElementClicked() {
+			if (elementIsClicked) {
 				console.log("Ricomincia");
 			}
 		}
-		var punteggio=0;
-        var dimXcanv = canvas.width;
-        var dimYcanv = canvas.height;
-		var velocitaScrolling=.7;
-        var stop = false;
-		var modulo=50;
-		
-		function cambiaScala(){
-			if(modulo==25)
-				modulo=50;
+		var punteggio = 0;
+		var dimXcanv = canvas.width;
+		var dimYcanv = canvas.height;
+		var velocitaScrolling = .7;
+		var stop = false;
+		var modulo = 50;
+
+		function cambiaScala() {
+			if (modulo == 25)
+				modulo = 50;
 			else
-				modulo=25;
+				modulo = 25;
 			disegnaSchermo();
 		};
-		
-        let terrHandler = new terrenoHandler();
-        let ostacHandler = new ostacoloHandler();
-		
+
+		let terrHandler = new terrenoHandler();
+		let ostacHandler = new ostacoloHandler();
+
 		function disegnaSchermo() {
-			if(!stop)
+			if (!stop)
 			//if(true)
 			{
 				ctx.beginPath();
@@ -76,34 +76,27 @@
 				ctx.closePath();
 				terrHandler.gestisciTerreno();
 				ostacHandler.gestisciOstacolo(rana.x, rana.y);
-				
+
 				rana.disegnaGiocatore();
 				contPunteggio.innerHTML = punteggio;
-			}
-			else
-			{
+			} else {
 				ctx.beginPath();
-				ctx.rect(dimXcanv/6, dimYcanv/4, 2*dimXcanv/3, 4*dimYcanv/7);
+				ctx.rect(dimXcanv / 6, dimYcanv / 4, 2 * dimXcanv / 3, 4 * dimYcanv / 7);
 				ctx.fillStyle = "black";
 				ctx.fill();
 				ctx.closePath();
-				
+
 				ctx.font = "60pt Calibri";
 				ctx.textAlign = 'center';
 				ctx.fillStyle = 'red';
-				ctx.fillText("GAME OVER", dimXcanv/2, dimYcanv/2);
-				ctx.fillText("Punteggio: "+punteggio, dimXcanv/2, dimYcanv/2+70);
+				ctx.fillText("GAME OVER", dimXcanv / 2, dimYcanv / 2);
+				ctx.fillText("Punteggio: " + punteggio, dimXcanv / 2, dimYcanv / 2 + 70);
 				ctx.closePath();
-				
+
 				//setInterval(isElementClicked, 100);
 			}
-			
-        }
-		
-        let rana = new Giocatore(modulo);
-		
-		//Richiamo disegnaSchermo ad ogni frame
-		
+		}
+		let rana = new Giocatore(modulo);
 		setInterval(disegnaSchermo, 20);
     </script>
 </body>
