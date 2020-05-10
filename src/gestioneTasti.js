@@ -5,36 +5,36 @@ var vaiSx;
 var vaiSu;
 var vaiGiu;
 var timeout = null;
-var premuto=false;
+var premuto = false;
 
 function keyDownHandler(e) {
-	switch (e.key) {
-		case "d":
-			vaiDx = true;
-			break;
-		case "a":
-			vaiSx = true;
-			break;
-		case "s":
-			vaiGiu = true;
-			break;
-		case "w":
-			vaiSu = true;
-			break;
-		
-		case "ArrowRight":
-			vaiDx = true;
-			break;
-		case "ArrowLeft":
-			vaiSx = true;
-			break;
-		case "ArrowUp":
-			vaiSu = true;
-			break;
-		case "ArrowDown":
-			vaiGiu = true;
-			break;
-	}
+    switch (e.key) {
+        case "d":
+            vaiDx = true;
+            break;
+        case "a":
+            vaiSx = true;
+            break;
+        case "s":
+            vaiGiu = true;
+            break;
+        case "w":
+            vaiSu = true;
+            break;
+
+        case "ArrowRight":
+            vaiDx = true;
+            break;
+        case "ArrowLeft":
+            vaiSx = true;
+            break;
+        case "ArrowUp":
+            vaiSu = true;
+            break;
+        case "ArrowDown":
+            vaiGiu = true;
+            break;
+    }
 }
 
 function keyUpHandler(e) {
@@ -51,19 +51,19 @@ function keyUpHandler(e) {
         case "w":
             vaiSu = false;
             break;
-	
-	
-		case "ArrowRight":
-			vaiDx = false;
-			break;
-		case "ArrowLeft":
-			vaiSx = false;
-			break;
-		case "ArrowUp":
-			vaiSu = false;
-			break;
-		case "ArrowDown":
-			vaiGiu = false;
-			break;
-	}
+
+
+        case "ArrowRight":
+            vaiDx = false;
+            break;
+        case "ArrowLeft":
+            vaiSx = false;
+            break;
+        case "ArrowUp":
+            vaiSu = false;
+            break;
+        case "ArrowDown":
+            vaiGiu = false;
+            break;
+    }
 }
